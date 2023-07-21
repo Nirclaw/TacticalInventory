@@ -11,7 +11,7 @@ appExpres.use("/generateToken",appGenerar)
 
 
 
-appExpres.use("/suministro",appSuministro); //pendiente del enrutador y del jwt
+appExpres.use("/suministro",appValiddarToken,appSuministro); //pendiente del enrutador y del jwt
 
 appExpres.listen(CONFIG, () => {
   console.log(`http://${CONFIG.hostname}:${CONFIG.port}`);

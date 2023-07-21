@@ -20,7 +20,7 @@ appSuministro.get("/", (req, res) => {
     });
   });
 
-appSuministro.post("/create",appValiddarToken, (req, res) => {
+appSuministro.post("/create", (req, res) => {
   con.query(/*sql*/ `INSERT INTO suministro SET ? `, req.body, (err, data) => {
     if (err) {
       console.log(req.body);
