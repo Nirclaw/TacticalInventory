@@ -1,6 +1,7 @@
 import { Router } from "express";
 import mysql from "mysql2";
 import { CONNECT } from "../config/config.js";
+import proxybuscarSuministroId from "../middleware/proxyCarabinas/proxygetID.js";
 
 const appCarabinas = Router();
 let con = undefined;
@@ -21,10 +22,10 @@ appCarabinas.get("/", (req, res) => {
 
 //trae informacion de un carabinas en especifico con el fusil_asalto_serial
 
-appCarabinas.get("/id", (req, res) => {
+appCarabinas.get("/id",proxybuscarSuministroId, (req, res) => {
   con.query(
     /*sql*/ `SELECT * FROM carabinas WHERE carabina_serial = ?`,
-    req.body.carabina_serial,
+    req.body.serial,
     (err, data) => {
       if (err) {
         res.send(err);
