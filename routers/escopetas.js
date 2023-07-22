@@ -1,6 +1,8 @@
 import { Router } from "express";
 import mysql from "mysql2";
 import { CONNECT } from "../config/config.js";
+import proxybuscarEscopSerial from "../middleware/proxyEscopeta/proxyGetSerial.js";
+import proxycreatEscopeta from "../middleware/proxyEscopeta/proxyCreateEscopeta.js";
 
 const appEscopetas = Router();
 let con = undefined;
@@ -21,10 +23,10 @@ appEscopetas.get("/", (req, res) => {
 
 //trae informacion de un escopetas en especifico con el fusil_asalto_serial
 
-appEscopetas.get("/id", (req, res) => {
+appEscopetas.get("/id",proxybuscarEscopSerial, (req, res) => {
   con.query(
     /*sql*/ `SELECT * FROM escopetas WHERE escopeta_serial = ?`,
-    req.body.escopeta_serial,
+    req.body.serial,
     (err, data) => {
       if (err) {
         res.send(err);
@@ -35,7 +37,7 @@ appEscopetas.get("/id", (req, res) => {
 
 //crea un escopetas
 
-appEscopetas.post("/create", (req, res) => {
+appEscopetas.post("/create",proxycreatEscopeta, (req, res) => {
   con.query(/*sql*/ `INSERT INTO escopetas SET ? `, req.body, (err, data) => {
     if (err) {
       console.log(req.body);
