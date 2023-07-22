@@ -1,6 +1,9 @@
 import { Router } from "express";
 import mysql from "mysql2";
 import { CONNECT } from "../config/config.js";
+import proxybuscarSuministroId from "../middleware/proxySuministros/proxyBuscarID.js";
+import proxyCrearSuministro from "../middleware/proxySuministros/proxyCrearsuministro.js";
+import proxyUpdateSuministro from "../middleware/proxySuministros/updateSuministro.js";
 
 
 const appSuministro = Router();
@@ -22,10 +25,10 @@ appSuministro.get("/", (req, res) => {
 
 //trae informacion de un suministro en especifico con el id
 
-appSuministro.get("/id/:suministro_id", (req, res) => {
+appSuministro.get("/id",proxybuscarSuministroId ,(req, res) => {
   con.query(
     /*sql*/ `SELECT * FROM suministro WHERE suministro_id = ?`,
-    req.params.suministro_id,
+    req.body.id_suministro,
     (err, data) => {
       if (err) {
         res.send(err);
@@ -36,7 +39,7 @@ appSuministro.get("/id/:suministro_id", (req, res) => {
 
 //crea un suministro
 
-appSuministro.post("/create", (req, res) => {
+appSuministro.post("/create",proxyCrearSuministro ,(req, res) => {
   con.query(/*sql*/ `INSERT INTO suministro SET ? `, req.body, (err, data) => {
     if (err) {
       console.log(req.body);
@@ -47,28 +50,28 @@ appSuministro.post("/create", (req, res) => {
 
 //borra un suministro en especifico con el id
 
-appSuministro.delete("/delete", (req, res) => {
+appSuministro.delete("/delete",proxybuscarSuministroId, (req, res) => {
   con.query(
     /*sql*/ `DELETE FROM suministro WHERE suministro_id = ?`,
     req.body.suministro_id,
     (err, data) => {
       if (err) {
         res.send(err);
-      } else res.send(data);
+      } else res.send("eliminado con exito");
     }
   );
 });
 
 //actualioza un suministro en especifico
 
-appSuministro.put("/update", (req, res) => {
+appSuministro.put("/update",proxyUpdateSuministro ,(req, res) => {
   con.query(
     /*sql*/ `UPDATE suministro SET ? WHERE suministro_id = ?`,
     [req.body, req.body.suministro_id],
     (err, data) => {
       if (err) {
         res.send(err);
-      } else res.send(data);
+      } else res.send("actualizado con exito");
     }
   );
 });
