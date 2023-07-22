@@ -2,6 +2,7 @@ import { Router } from "express";
 import mysql from "mysql2";
 import { CONNECT } from "../config/config.js";
 import proxybuscarSuministroId from "../middleware/proxyCarabinas/proxygetID.js";
+import proxycreateCarabina from "../middleware/proxyCarabinas/proxyCreateCarabina.js";
 
 const appCarabinas = Router();
 let con = undefined;
@@ -36,7 +37,7 @@ appCarabinas.get("/id",proxybuscarSuministroId, (req, res) => {
 
 //crea un carabinas
 
-appCarabinas.post("/create", (req, res) => {
+appCarabinas.post("/create",proxycreateCarabina,(req, res) => {
   con.query(/*sql*/ `INSERT INTO carabinas SET ? `, req.body, (err, data) => {
     if (err) {
       console.log(req.body);
