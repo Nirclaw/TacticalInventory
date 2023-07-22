@@ -11,13 +11,11 @@ proxyUpdateSuministro.use((req, res, next) => {
       excludeExtraneousValues: true,
     });
 
-    req.body = JSON.parse(JSON.stringify(data))
-    next()
+    req.body = JSON.parse(JSON.stringify(data));
+    next();
   } catch (error) {
-    res.status(400).send(error)
+    res.status(400).send(error);
   }
 });
 
-
-
-export default proxyUpdateSuministro
+export default proxyUpdateSuministro;

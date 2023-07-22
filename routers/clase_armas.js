@@ -2,6 +2,7 @@ import { Router } from "express";
 import mysql from "mysql2";
 import { CONNECT } from "../config/config.js";
 import proxybuscarClaseId from "../middleware/proxyclaseArmas/proxyGetId.js";
+import proxycreateClase from "../middleware/proxyclaseArmas/proxyCreateClase.js";
 
 const appClaseArmas = Router();
 let con = undefined;
@@ -25,7 +26,7 @@ appClaseArmas.get("/", (req, res) => {
 appClaseArmas.get("/id", proxybuscarClaseId, (req, res) => {
   con.query(
     /*sql*/ `SELECT * FROM clases_armas WHERE clase_id = ?`,
-    req.body,
+    req.body.id_clase,
     (err, data) => {
       if (err) {
         res.send(err);
@@ -36,7 +37,7 @@ appClaseArmas.get("/id", proxybuscarClaseId, (req, res) => {
 
 //crea un clases_armas
 
-appClaseArmas.post("/create", (req, res) => {
+appClaseArmas.post("/create", proxycreateClase, (req, res) => {
   con.query(
     /*sql*/ `INSERT INTO clases_armas SET ? `,
     req.body,

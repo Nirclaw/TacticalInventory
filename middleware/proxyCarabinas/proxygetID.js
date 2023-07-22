@@ -12,7 +12,9 @@ proxybuscarSuministroId.use((req, res, next) => {
 
     req.body.serial = JSON.parse(JSON.stringify(data))
     next()
-  } catch (error) {}
+  } catch (error) {
+    res.status(error.status).send(error);
+  }
 });
 
 

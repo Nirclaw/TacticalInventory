@@ -11,11 +11,11 @@ proxybuscarSuministroId.use((req, res, next) => {
       exposeDefaultValues: true,
     });
 
-    req.body.suministro_id = JSON.parse(JSON.stringify(data))
-    next()
-  } catch (error) {}
+    req.body.suministro_id = JSON.parse(JSON.stringify(data));
+    next();
+  } catch (error) {
+    res.status(error.status).send(error);
+  }
 });
 
-
-
-export default proxybuscarSuministroId
+export default proxybuscarSuministroId;

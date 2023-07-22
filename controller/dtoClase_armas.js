@@ -25,47 +25,12 @@ __decorate([
     __metadata("design:type", Number)
 ], buscarClaseId.prototype, "clase_id", void 0);
 export class createClase {
-    constructor(carabina_capacidad, carabina_calibre, carabina_nombre, carabina_pais_origen, carabina_serial, carabina_clase_id) {
-        this.carabina_capacidad = carabina_capacidad;
-        this.carabina_calibre = carabina_calibre;
-        this.carabina_nombre = carabina_nombre;
-        this.carabina_pais_origen = carabina_pais_origen;
-        this.carabina_serial = carabina_serial;
-        this.carabina_clase_id = carabina_clase_id;
+    constructor(nombre) {
+        this.clase_nombre = nombre;
     }
 }
 __decorate([
-    Expose({ name: "capacidad_cargador" }),
-    Transform(({ value }) => {
-        if (/^[0-9]+$/.test(value))
-            return value;
-        else
-            throw { status: 400, message: "Error en los parametros" };
-    }, { toClassOnly: true }),
-    __metadata("design:type", Number)
-], createClase.prototype, "carabina_capacidad", void 0);
-__decorate([
-    Expose({ name: "calibre" }),
-    Transform(({ value }) => {
-        if (/^[0-9]+$/.test(value))
-            return value;
-        else
-            throw { status: 400, message: "Error en los parametros" };
-    }, { toClassOnly: true }),
-    __metadata("design:type", Number)
-], createClase.prototype, "carabina_calibre", void 0);
-__decorate([
-    Expose({ name: "nombre" }),
-    Transform(({ value }) => {
-        if (/^[0-9a-zA-ZáéíóúÁÉÍÓÚñÑ\s-]+$/.test(value))
-            return value;
-        else
-            throw { status: 400, message: "Error en el nombre" };
-    }, { toClassOnly: true }),
-    __metadata("design:type", String)
-], createClase.prototype, "carabina_nombre", void 0);
-__decorate([
-    Expose({ name: "pais_origen" }),
+    Expose({ name: "nombre_clase" }),
     Transform(({ value }) => {
         if (/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/.test(value))
             return value;
@@ -73,24 +38,4 @@ __decorate([
             throw { status: 400, message: "Error en el nombre" };
     }, { toClassOnly: true }),
     __metadata("design:type", String)
-], createClase.prototype, "carabina_pais_origen", void 0);
-__decorate([
-    Expose({ name: "serial" }),
-    Transform(({ value }) => {
-        if (/^[0-9]+$/.test(value))
-            return value;
-        else
-            throw { status: 400, message: "Error en los parametros" };
-    }, { toClassOnly: true }),
-    __metadata("design:type", Number)
-], createClase.prototype, "carabina_serial", void 0);
-__decorate([
-    Expose({ name: "clase_arma" }),
-    Transform(({ value }) => {
-        if (/^[0-9]+$/.test(value))
-            return value;
-        else
-            throw { status: 400, message: "Error en los parametros" };
-    }, { toClassOnly: true }),
-    __metadata("design:type", Number)
-], createClase.prototype, "carabina_clase_id", void 0);
+], createClase.prototype, "clase_nombre", void 0);

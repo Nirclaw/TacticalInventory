@@ -4,78 +4,33 @@ export class buscarClaseId {
     @Expose({ name: "id_clase" })
     @Transform(({ value }) => {
         if (/^[0-9]+$/.test(value)){
-            return value;
-        }
+            return value
+        }           
         else throw { status: 400, message: "Error en los parametros" };
     }, { toClassOnly: true })
     clase_id: number;
+
+
+
+
     constructor(ID: number) {
         this.clase_id = ID
     }
 }
 
 export class createClase {
-    @Expose({ name: "capacidad_cargador" })
-    @Transform(({ value }) => {
-        if (/^[0-9]+$/.test(value))
-            return value;
-        else throw { status: 400, message: "Error en los parametros" };
-    }, { toClassOnly: true })
-    carabina_capacidad: number
-
-    @Expose({ name: "calibre" })
-    @Transform(({ value }) => {
-        if (/^[0-9]+$/.test(value))
-            return value;
-        else throw { status: 400, message: "Error en los parametros" };
-    }, { toClassOnly: true })
-    carabina_calibre: number
-
-    @Expose({ name: "nombre" })
-    @Transform(({ value }) => {
-        if (/^[0-9a-zA-ZáéíóúÁÉÍÓÚñÑ\s-]+$/.test(value))
-            return value;
-        else throw { status: 400, message: "Error en el nombre" };
-    }, { toClassOnly: true })
-    carabina_nombre: string
-
-    @Expose({ name: "pais_origen" })
+    @Expose({ name: "nombre_clase" })
     @Transform(({ value }) => {
         if (/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/.test(value))
             return value;
         else throw { status: 400, message: "Error en el nombre" };
     }, { toClassOnly: true })
-    carabina_pais_origen: string
+    clase_nombre: String
 
-    @Expose({ name: "serial" })
-    @Transform(({ value }) => {
-        if (/^[0-9]+$/.test(value))
-            return value;
-        else throw { status: 400, message: "Error en los parametros" };
-    }, { toClassOnly: true })
-    carabina_serial: number
 
-    @Expose({ name: "clase_arma" })
-    @Transform(({ value }) => {
-        if (/^[0-9]+$/.test(value))
-            return value;
-        else throw { status: 400, message: "Error en los parametros" };
-    }, { toClassOnly: true })
-    carabina_clase_id: number
+    constructor(nombre: string,) {
 
-    constructor(carabina_capacidad: number,
-        carabina_calibre: number,
-        carabina_nombre: string,
-        carabina_pais_origen: string,
-        carabina_serial: number,
-        carabina_clase_id: number) {
+        this.clase_nombre = nombre
 
-        this.carabina_capacidad = carabina_capacidad
-        this.carabina_calibre = carabina_calibre
-        this.carabina_nombre = carabina_nombre
-        this.carabina_pais_origen = carabina_pais_origen
-        this.carabina_serial = carabina_serial
-        this.carabina_clase_id = carabina_clase_id
     }
-
 }

@@ -12,7 +12,9 @@ proxycreateCarabina.use((req, res, next) => {
 
     req.body = JSON.parse(JSON.stringify(data))
     next()
-  } catch (error) {}
+  } catch (error) {
+    res.status(error.status).send(error);
+  }
 });
 
 
