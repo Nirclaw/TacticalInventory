@@ -1,6 +1,8 @@
 import { Router } from "express";
 import mysql from "mysql2";
 import { CONNECT } from "../config/config.js";
+import proxybuscarFusilPresicionSerial from "../middleware/proxyFusilPresicion.js/proxyGetSerial.js";
+import proxyFusilPresicion from "../middleware/proxyFusilPresicion.js/proxyCreatefusilPresicion.js";
 
 const appFusilPresicion = Router();
 let con = undefined;
@@ -21,10 +23,10 @@ appFusilPresicion.get("/", (req, res) => {
 
 //trae informacion de un escopetas en especifico con el fusil_asalto_serial
 
-appFusilPresicion.get("/id", (req, res) => {
+appFusilPresicion.get("/id", proxybuscarFusilPresicionSerial, (req, res) => {
   con.query(
     /*sql*/ `SELECT * FROM fusiles_precision WHERE fusil_precision_serial = ?`,
-    req.body.fusil_precision_serial,
+    req.body.serial,
     (err, data) => {
       if (err) {
         res.send(err);
@@ -35,15 +37,17 @@ appFusilPresicion.get("/id", (req, res) => {
 
 //crea un escopetas
 
-appFusilPresicion.post("/create", (req, res) => {
-  con.query(/*sql*/ `INSERT INTO fusiles_precision SET ? `, req.body, (err, data) => {
-    if (err) {
-      console.log(req.body);
-      res.send(err);
-    } else res.send("creado con exito");
-  });
+appFusilPresicion.post("/create",proxyFusilPresicion, (req, res) => {
+  con.query(
+    /*sql*/ `INSERT INTO fusiles_precision SET ? `,
+    req.body,
+    (err, data) => {
+      if (err) {
+        console.log(req.body);
+        res.send(err);
+      } else res.send("creado con exito");
+    }
+  );
 });
-
-
 
 export default appFusilPresicion;
