@@ -26,7 +26,7 @@ appCarabinas.get("/", (req, res) => {
 appCarabinas.get("/id",proxybuscarSuministroId, (req, res) => {
   con.query(
     /*sql*/ `SELECT * FROM carabinas WHERE carabina_serial = ?`,
-    req.body.serial,
+    req.body,
     (err, data) => {
       if (err) {
         res.send(err);

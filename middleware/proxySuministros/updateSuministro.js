@@ -8,12 +8,14 @@ const proxyUpdateSuministro = express();
 proxyUpdateSuministro.use((req, res, next) => {
   try {
     let data = plainToClass(updateSuministro, req.body, {
-      exposeDefaultValues: true,
+      excludeExtraneousValues: true,
     });
 
     req.body = JSON.parse(JSON.stringify(data))
     next()
-  } catch (error) {}
+  } catch (error) {
+    res.status(400).send(error)
+  }
 });
 
 

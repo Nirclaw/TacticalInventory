@@ -10,10 +10,12 @@ proxybuscarSuministroId.use((req, res, next) => {
     let data = plainToClass(buscarSuministroId, req.body, {
       exposeDefaultValues: true,
     });
-
-    req.body = JSON.parse(JSON.stringify(data))
+    req.body.id_suministro = JSON.parse(JSON.stringify(data))
     next()
-  } catch (error) {}
+  } catch (error) {
+
+    res.status(400).send(error)
+  }
 });
 
 

@@ -42,7 +42,6 @@ appSuministro.get("/id",proxybuscarSuministroId ,(req, res) => {
 appSuministro.post("/create",proxyCrearSuministro ,(req, res) => {
   con.query(/*sql*/ `INSERT INTO suministro SET ? `, req.body, (err, data) => {
     if (err) {
-      console.log(req.body);
       res.send(err);
     } else res.send("creado con exito");
   });
@@ -53,7 +52,7 @@ appSuministro.post("/create",proxyCrearSuministro ,(req, res) => {
 appSuministro.delete("/delete",proxybuscarSuministroId, (req, res) => {
   con.query(
     /*sql*/ `DELETE FROM suministro WHERE suministro_id = ?`,
-    req.body.suministro_id,
+    req.body.id_suministro,
     (err, data) => {
       if (err) {
         res.send(err);

@@ -13,7 +13,9 @@ proxyCrearSuministro.use((req, res, next) => {
 
     req.body = JSON.parse(JSON.stringify(data))
     next()
-  } catch (error) {}
+  } catch (error) {
+    res.status(400).send(error)
+  }
 });
 
 

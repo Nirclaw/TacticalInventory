@@ -7,7 +7,7 @@ const proxybuscarSuministroId = express();
 
 proxybuscarSuministroId.use((req, res, next) => {
   try {
-    let data = plainToClass(deleteSuministroId, req.body.suministro_id, {
+    let data = plainToClass(deleteSuministroId, req.body, {
       exposeDefaultValues: true,
     });
 

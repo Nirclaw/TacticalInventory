@@ -6,7 +6,7 @@ const proxybuscarSuministroId = express();
 
 proxybuscarSuministroId.use((req, res, next) => {
   try {
-    let data = plainToClass(buscarCarabinaId, req.body.serial, {
+    let data = plainToClass(buscarCarabinaId, req.body, {
       exposeDefaultValues: true,
     });
 
