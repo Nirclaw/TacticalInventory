@@ -1,6 +1,8 @@
 import { Router } from "express";
 import mysql from "mysql2";
 import { CONNECT } from "../config/config.js";
+import proxybuscarCuchilloSerial from "../middleware/proxyCuchillos.js/proxyBuscarSerial.js";
+import proxycreateCuchillo from "../middleware/proxyCuchillos.js/proxyCreateCuchillo.js";
 
 const appCuchilloCombate = Router();
 let con = undefined;
@@ -21,13 +23,13 @@ appCuchilloCombate.get("/", (req, res) => {
 
 //trae informacion de un cuchillo_combate en especifico con el fusil_asalto_serial
 
-appCuchilloCombate.get("/id", (req, res) => {
+appCuchilloCombate.get("/id",proxybuscarCuchilloSerial, (req, res) => {
   con.query(
     /*sql*/ `SELECT * FROM cuchillo_combate WHERE cuchillo_serial = ?`,
-    req.body.cuchillo_serial,
+    req.body,
     (err, data) => {
       if (err) {
-        res.send(err);
+        res.status(400).send(err);
       } else res.send(data);
     }
   );
@@ -35,7 +37,7 @@ appCuchilloCombate.get("/id", (req, res) => {
 
 //crea un cuchillo_combate
 
-appCuchilloCombate.post("/create", (req, res) => {
+appCuchilloCombate.post("/create",proxycreateCuchillo, (req, res) => {
   con.query(/*sql*/ `INSERT INTO cuchillo_combate SET ? `, req.body, (err, data) => {
     if (err) {
       console.log(req.body);
