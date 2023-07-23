@@ -1,6 +1,8 @@
 import { Router } from "express";
 import mysql from "mysql2";
 import { CONNECT } from "../config/config.js";
+import proxybuscarPistoSemiAutoSerial from "../middleware/proxyPistolaSemiAuto/proxyGetSerial.js";
+import proxycreatPistoSemiAuto from "../middleware/proxyPistolaSemiAuto/poxyCreatepistoSemiAuto.js";
 
 const appPistolasSemiAuto = Router();
 let con = undefined;
@@ -21,10 +23,10 @@ appPistolasSemiAuto.get("/", (req, res) => {
 
 //trae informacion de un escopetas en especifico con el fusil_asalto_serial
 
-appPistolasSemiAuto.get("/id", (req, res) => {
+appPistolasSemiAuto.get("/id",proxybuscarPistoSemiAutoSerial, (req, res) => {
   con.query(
     /*sql*/ `SELECT * FROM pistolas_semiautomaticas WHERE pistola_semiauto_serial = ?`,
-    req.body.pistola_semiauto_serial,
+    req.body.serial,
     (err, data) => {
       if (err) {
         res.send(err);
@@ -35,7 +37,7 @@ appPistolasSemiAuto.get("/id", (req, res) => {
 
 //crea un escopetas
 
-appPistolasSemiAuto.post("/create", (req, res) => {
+appPistolasSemiAuto.post("/create",proxycreatPistoSemiAuto, (req, res) => {
   con.query(/*sql*/ `INSERT INTO pistolas_semiautomaticas SET ? `, req.body, (err, data) => {
     if (err) {
       console.log(req.body);
