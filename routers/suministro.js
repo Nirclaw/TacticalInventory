@@ -50,7 +50,7 @@ appSuministro.post("/create",aappEncriptar,proxyCrearSuministro ,(req, res) => {
 
 //borra un suministro en especifico con el id
 
-appSuministro.delete("/delete",proxybuscarSuministroId, (req, res) => {
+appSuministro.delete("/delete",aappEncriptar,proxybuscarSuministroId, (req, res) => {
   con.query(
     /*sql*/ `DELETE FROM suministro WHERE suministro_id = ?`,
     req.body.id_suministro,
@@ -64,7 +64,7 @@ appSuministro.delete("/delete",proxybuscarSuministroId, (req, res) => {
 
 //actualioza un suministro en especifico
 
-appSuministro.put("/update",proxyUpdateSuministro ,(req, res) => {
+appSuministro.put("/update",aappEncriptar,proxyUpdateSuministro ,(req, res) => {
   con.query(
     /*sql*/ `UPDATE suministro SET ? WHERE suministro_id = ?`,
     [req.body, req.body.suministro_id],
