@@ -3,6 +3,7 @@ import mysql from "mysql2";
 import { CONNECT } from "../config/config.js";
 import proxybuscarClaseId from "../middleware/proxyclaseArmas/proxyGetId.js";
 import proxycreateClase from "../middleware/proxyclaseArmas/proxyCreateClase.js";
+import aappEncriptar from "./validarEstructura.js";
 
 const appClaseArmas = Router();
 let con = undefined;
@@ -23,7 +24,7 @@ appClaseArmas.get("/", (req, res) => {
 
 //trae informacion de un clases_armas en especifico con el id
 
-appClaseArmas.get("/id", proxybuscarClaseId, (req, res) => {
+appClaseArmas.get("/id",aappEncriptar, proxybuscarClaseId, (req, res) => {
   con.query(
     /*sql*/ `SELECT * FROM clases_armas WHERE clase_id = ?`,
     req.body.id_clase,
@@ -37,13 +38,12 @@ appClaseArmas.get("/id", proxybuscarClaseId, (req, res) => {
 
 //crea un clases_armas
 
-appClaseArmas.post("/create", proxycreateClase, (req, res) => {
+appClaseArmas.post("/create", aappEncriptar, proxycreateClase, (req, res) => {
   con.query(
     /*sql*/ `INSERT INTO clases_armas SET ? `,
     req.body,
     (err, data) => {
       if (err) {
-        console.log(req.body);
         res.send(err);
       } else res.send("creado con exito");
     }
