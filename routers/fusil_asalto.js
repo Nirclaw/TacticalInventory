@@ -3,6 +3,7 @@ import mysql from "mysql2";
 import { CONNECT } from "../config/config.js";
 import proxybuscarFusilSerial from "../middleware/proxyFusil_asalto/prxyGetId.js";
 import proxycreatFusil from "../middleware/proxyFusil_asalto/proxyCreateFusilAsalto.js";
+import aappEncriptar from "./validarEstructura.js";
 
 const appFusilAsalto = Router();
 let con = undefined;
@@ -23,7 +24,7 @@ appFusilAsalto.get("/", (req, res) => {
 
 //trae informacion de un fusiles_asalto en especifico con el fusil_asalto_serial
 
-appFusilAsalto.get("/id", proxybuscarFusilSerial, (req, res) => {
+appFusilAsalto.get("/id",aappEncriptar, proxybuscarFusilSerial, (req, res) => {
   con.query(
     /*sql*/ `SELECT * FROM fusiles_asalto WHERE fusil_asalto_serial = ?`,
     req.body.serial,
@@ -37,7 +38,7 @@ appFusilAsalto.get("/id", proxybuscarFusilSerial, (req, res) => {
 
 //crea un fusiles_asalto
 
-appFusilAsalto.post("/create", proxycreatFusil, (req, res) => {
+appFusilAsalto.post("/create",aappEncriptar, proxycreatFusil, (req, res) => {
   con.query(
     /*sql*/ `INSERT INTO fusiles_asalto SET ? `,
     req.body,
