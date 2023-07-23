@@ -4,6 +4,7 @@ import { CONNECT } from "../config/config.js";
 import proxybuscarSuministroId from "../middleware/proxySuministros/proxyBuscarID.js";
 import proxyCrearSuministro from "../middleware/proxySuministros/proxyCrearsuministro.js";
 import proxyUpdateSuministro from "../middleware/proxySuministros/updateSuministro.js";
+import aappEncriptar from "./validarEstructura.js";
 
 
 const appSuministro = Router();
@@ -25,7 +26,7 @@ appSuministro.get("/", (req, res) => {
 
 //trae informacion de un suministro en especifico con el id
 
-appSuministro.get("/id",proxybuscarSuministroId ,(req, res) => {
+appSuministro.get("/id",aappEncriptar,proxybuscarSuministroId ,(req, res) => {
   con.query(
     /*sql*/ `SELECT * FROM suministro WHERE suministro_id = ?`,
     req.body.id_suministro,
@@ -39,7 +40,7 @@ appSuministro.get("/id",proxybuscarSuministroId ,(req, res) => {
 
 //crea un suministro
 
-appSuministro.post("/create",proxyCrearSuministro ,(req, res) => {
+appSuministro.post("/create",aappEncriptar,proxyCrearSuministro ,(req, res) => {
   con.query(/*sql*/ `INSERT INTO suministro SET ? `, req.body, (err, data) => {
     if (err) {
       res.send(err);

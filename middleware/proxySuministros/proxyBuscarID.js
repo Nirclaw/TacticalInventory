@@ -2,22 +2,33 @@ import "reflect-metadata";
 import express from "express";
 import { plainToClass } from "class-transformer";
 import { buscarSuministroId } from "../../controller/dtoSuministro.js";
+import { jwtVerify } from "jose";
+import { PASSWORD } from "../../config/config.js";
 
 const proxybuscarSuministroId = express();
 
-proxybuscarSuministroId.use((req, res, next) => {
-  try {
-    let data = plainToClass(buscarSuministroId, req.body, {
-      exposeDefaultValues: true,
-    });
-    req.body.id_suministro = JSON.parse(JSON.stringify(data))
-    next()
-  } catch (error) {
+proxybuscarSuministroId.use(async (req, res, next) => {
+  const encoder = new TextEncoder();
+  const jwtData = await jwtVerify(req.body, encoder.encode(PASSWORD));
+  let comprar = {
+    id_suministro: null,
+  };
+  let { iat, exp, ...coppia } = jwtData.payload;
+  if (
+    JSON.stringify(Object.keys(comprar)) === JSON.stringify(Object.keys(coppia))
+  ) {
+    try {
+      req.body = coppia;
+      let data = plainToClass(buscarSuministroId, req.body.id_suministro, {
+        exposeDefaultValues: true,
+      });
 
-    res.status(400).send(error)
-  }
+      req.body.id_suministro = data;
+      next();
+    } catch (error) {
+      res.status(400).send(error);
+    }
+  } else res.status(400).send("error en las llaves");
 });
 
-
-
-export default proxybuscarSuministroId
+export default proxybuscarSuministroId;
