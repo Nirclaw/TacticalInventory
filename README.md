@@ -1,19 +1,19 @@
-TacticalInventory - Base de Datos de Armas
+# TacticalInventory - Base de Datos de Armas
 
 TacticalInventory es una base de datos de armas diseñada para proporcionar una herramienta confiable y eficiente para investigadores, entidades gubernamentales y entusiastas de las armas. Esta base de datos permite acceder rápidamente a información precisa sobre una amplia gama de armas y proporciona la funcionalidad de registrar armas y crear suministros, permitiendo asignar a una persona el suministro creado.
 
-Características
-Amplia variedad de armas: La base de datos incluye información detallada sobre diferentes tipos de armas, como pistolas, rifles, escopetas, ametralladoras, entre otros.
-Detalles técnicos: Proporciona especificaciones técnicas completas para cada arma, incluyendo calibre, capacidad del cargador, peso, longitud, etc.
-Información cifrada: Toda la información se cifra para garantizar un tratamiento seguro y confidencial de los datos.
-Búsqueda de suministros por ID: Permite realizar búsquedas de suministros por su ID, brindando información completa sobre la persona asignada y las armas que contiene.
-Búsqueda de armas por serial: Facilita la búsqueda de armas por su número de serie, proporcionando toda la información relevante, como país de origen y calibre del arma.
-Registro de suministros: Permite registrar nuevos suministros en la base de datos, incluyendo detalles de las armas y equipos contenidos en cada suministro.
-Actualización y eliminación de suministros: Permite a los usuarios actualizar y eliminar información de suministros existentes según sea necesario.
-Búsqueda por ID de suministro: Facilita la búsqueda de suministros específicos por su ID en la base de datos.
-Registro y búsqueda de armas: Permite registrar nuevas armas en la base de datos y buscar armas existentes por su número de serie.
-Seguridad de la información: Se toman medidas de seguridad para proteger la integridad y confidencialidad de los datos almacenados.
+## Características
 
+- Amplia variedad de armas: La base de datos incluye información detallada sobre diferentes tipos de armas, como pistolas, rifles, escopetas, ametralladoras, entre otros.
+- Detalles técnicos: Proporciona especificaciones técnicas completas para cada arma, incluyendo calibre, capacidad del cargador, peso, longitud, etc.
+- Información cifrada: Toda la información se cifra para garantizar un tratamiento seguro y confidencial de los datos.
+- Búsqueda de suministros por ID: Permite realizar búsquedas de suministros por su ID, brindando información completa sobre la persona asignada y las armas que contiene.
+- Búsqueda de armas por serial: Facilita la búsqueda de armas por su número de serie, proporcionando toda la información relevante, como país de origen y calibre del arma.
+- Registro de suministros: Permite registrar nuevos suministros en la base de datos, incluyendo detalles de las armas y equipos contenidos en cada suministro.
+- Actualización y eliminación de suministros: Permite a los usuarios actualizar y eliminar información de suministros existentes según sea necesario.
+- Búsqueda por ID de suministro: Facilita la búsqueda de suministros específicos por su ID en la base de datos.
+- Registro y búsqueda de armas: Permite registrar nuevas armas en la base de datos y buscar armas existentes por su número de serie.
+- Seguridad de la información: Se toman medidas de seguridad para proteger la integridad y confidencialidad de los datos almacenados.
 
 **Diagrama de base datos**
 
