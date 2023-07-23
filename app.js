@@ -19,25 +19,25 @@ appExpres.use(express.json());
 appExpres.use("/generateToken", appGenerar); //generador de token
 /* appExpres.use("/validarToken",appValiddarToken) */
 
-appExpres.use("/suministro", appSuministro); //pendiente del  dto , proxy y del jwt
+appExpres.use("/suministro", appSuministro); //pendiente  y del jwt
 
-appExpres.use("/fusil-asalto", appFusilAsalto); //pendiente del  dto , proxy y del jwt
+appExpres.use("/fusil-asalto", appFusilAsalto); //pendiente  y del jwt
 
-appExpres.use("/escopetas", appEscopetas); //pendiente del  dto , proxy y del jwt
+appExpres.use("/escopetas", appEscopetas); //pendiente  y del jwt
 
-appExpres.use("/cuchillo-combate", appCuchilloCombate); //pendiente del  dto , proxy y del jwt
+appExpres.use("/cuchillo-combate", appCuchilloCombate); //pendiente  y del jwt
 
-appExpres.use("/pistolas-semi-automaitcas", appPistolasSemiAuto); //pendiente del  dto , proxy y del jwt
+appExpres.use("/pistolas-semi-automaitcas", appPistolasSemiAuto); //pendiente  y del jwt
 
-appExpres.use("/fusil-presicion", appFusilPresicion); //pendiente del  dto , proxy y del jwt
+appExpres.use("/fusil-presicion", appFusilPresicion); //pendiente  y del jwt
 
-appExpres.use("/revolveres", appRevolveres); //pendiente del  dto , proxy y del jwt
+appExpres.use("/revolveres", appRevolveres); //pendiente  y del jwt
 
-appExpres.use("/carabinas", appCarabinas); //pendiente del  dto , proxy y del jwt
+appExpres.use("/carabinas", appCarabinas); //pendiente  y del jwt
 
-appExpres.use("/granadas", appGranadas); //pendiente del  dto , proxy y del jwt
+appExpres.use("/granadas", appGranadas); //pendiente  y del jwt
 
-appExpres.use("/clase-armas", appClaseArmas); //pendiente del  dto , proxy y del jwt
+appExpres.use("/clase-armas", appClaseArmas); //pendiente  y del jwt
 
 appExpres.listen(CONFIG, () => {
   console.log(`http://${CONFIG.hostname}:${CONFIG.port}`);
