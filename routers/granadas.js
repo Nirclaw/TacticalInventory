@@ -3,6 +3,7 @@ import mysql from "mysql2";
 import { CONNECT } from "../config/config.js";
 import proxybuscarGranadaSerial from "../middleware/proxyGranadaSErial/prxyGetId.js";
 import proxycreateGranda from "../middleware/proxyGranadaSErial/prxyCreateGrandas.js";
+import aappEncriptar from "./validarEstructura.js";
 
 const appGranadas = Router();
 let con = undefined;
@@ -23,7 +24,7 @@ appGranadas.get("/", (req, res) => {
 
 //trae informacion de un granadas en especifico con el fusil_asalto_serial
 
-appGranadas.get("/id", proxybuscarGranadaSerial, (req, res) => {
+appGranadas.get("/id",aappEncriptar, proxybuscarGranadaSerial, (req, res) => {
   con.query(
     /*sql*/ `SELECT * FROM granadas WHERE granada_serial = ?`,
     req.body.serial,
@@ -37,7 +38,7 @@ appGranadas.get("/id", proxybuscarGranadaSerial, (req, res) => {
 
 //crea un granadas
 
-appGranadas.post("/create", proxycreateGranda, (req, res) => {
+appGranadas.post("/create",aappEncriptar, proxycreateGranda, (req, res) => {
   con.query(
     /*sql*/ `INSERT INTO granadas SET ? `,
    req.body, (err, data) => {
