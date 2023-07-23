@@ -40,7 +40,7 @@ appPistolasSemiAuto.get("/id",proxybuscarPistoSemiAutoSerial, (req, res) => {
 appPistolasSemiAuto.post("/create",proxycreatPistoSemiAuto, (req, res) => {
   con.query(/*sql*/ `INSERT INTO pistolas_semiautomaticas SET ? `, req.body, (err, data) => {
     if (err) {
-      console.log(req.body);
+
       res.send(err);
     } else res.send("creado con exito");
   });
