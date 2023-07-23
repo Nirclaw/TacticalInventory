@@ -56,7 +56,7 @@ export class creatPistoSemiAuto {
     }, { toClassOnly: true })
     pistola_semiauto_serial: number
 
-    @Expose({ name: "clase_id" })
+    @Expose({ name: "clase_arma" })
     @Transform(({ value }) => {
         if (/^[0-9]+$/.test(value))
             return value;

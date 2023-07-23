@@ -84,7 +84,7 @@ __decorate([
     __metadata("design:type", Number)
 ], creatPistoSemiAuto.prototype, "pistola_semiauto_serial", void 0);
 __decorate([
-    Expose({ name: "clase_id" }),
+    Expose({ name: "clase_arma" }),
     Transform(({ value }) => {
         if (/^[0-9]+$/.test(value))
             return value;
