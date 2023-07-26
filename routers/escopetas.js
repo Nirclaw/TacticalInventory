@@ -26,7 +26,7 @@ appEscopetas.get("/", (req, res) => {
 
 appEscopetas.get("/id",aappEncriptar,proxybuscarEscopSerial, (req, res) => {
   con.query(
-    /*sql*/ `SELECT * FROM escopetas WHERE escopeta_serial = ?`,
+    /*sql*/ `SELECT * FROM escopetas WHERE  escopeta_id = ?`,
     req.body.serial,
     (err, data) => {
       if (err) {

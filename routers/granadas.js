@@ -26,7 +26,7 @@ appGranadas.get("/", (req, res) => {
 
 appGranadas.get("/id",aappEncriptar, proxybuscarGranadaSerial, (req, res) => {
   con.query(
-    /*sql*/ `SELECT * FROM granadas WHERE granada_serial = ?`,
+    /*sql*/ `SELECT * FROM granadas WHERE  granada_id = ?`,
     req.body.serial,
     (err, data) => {
       if (err) {

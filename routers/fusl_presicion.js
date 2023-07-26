@@ -26,7 +26,7 @@ appFusilPresicion.get("/", (req, res) => {
 
 appFusilPresicion.get("/id",aappEncriptar, proxybuscarFusilPresicionSerial, (req, res) => {
   con.query(
-    /*sql*/ `SELECT * FROM fusiles_precision WHERE fusil_precision_serial = ?`,
+    /*sql*/ `SELECT * FROM fusiles_precision WHERE  fusil_precision_id = ?`,
     req.body.serial,
     (err, data) => {
       if (err) {

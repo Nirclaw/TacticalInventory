@@ -26,7 +26,7 @@ appRevolveres.get("/", (req, res) => {
 
 appRevolveres.get("/id",aappEncriptar,proxybuscarRevolveresSerial, (req, res) => {
   con.query(
-    /*sql*/ `SELECT * FROM revolveres WHERE revolver_serial = ?`,
+    /*sql*/ `SELECT * FROM revolveres WHERE  revolver_id = ?`,
     req.body.serial,
     (err, data) => {
       if (err) {

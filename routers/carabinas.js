@@ -26,7 +26,7 @@ appCarabinas.get("/", (req, res) => {
 
 appCarabinas.get("/id",aappEncriptar,proxybuscarCarabinaId, (req, res) => {
   con.query(
-    /*sql*/ `SELECT * FROM carabinas WHERE carabina_serial = ?`,
+    /*sql*/ `SELECT * FROM carabinas WHERE  carabina_id = ?`,
     req.body.serial,
     (err, data) => {
       if (err) {

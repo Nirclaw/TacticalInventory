@@ -26,7 +26,7 @@ appPistolasSemiAuto.get("/", (req, res) => {
 
 appPistolasSemiAuto.get("/id",aappEncriptar,proxybuscarPistoSemiAutoSerial, (req, res) => {
   con.query(
-    /*sql*/ `SELECT * FROM pistolas_semiautomaticas WHERE pistola_semiauto_serial = ?`,
+    /*sql*/ `SELECT * FROM pistolas_semiautomaticas WHERE  pistola_semiauto_id = ?`,
     req.body.serial,
     (err, data) => {
       if (err) {

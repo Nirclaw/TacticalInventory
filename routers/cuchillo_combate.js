@@ -26,7 +26,7 @@ appCuchilloCombate.get("/", (req, res) => {
 
 appCuchilloCombate.get("/id",aappEncriptar,proxybuscarCuchilloSerial, (req, res) => {
   con.query(
-    /*sql*/ `SELECT * FROM cuchillo_combate WHERE cuchillo_serial = ?`,
+    /*sql*/ `SELECT * FROM cuchillo_combate WHERE  cuchillo_id = ?`,
     req.body,
     (err, data) => {
       if (err) {

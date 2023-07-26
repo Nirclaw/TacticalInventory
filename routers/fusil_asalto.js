@@ -26,7 +26,7 @@ appFusilAsalto.get("/", (req, res) => {
 
 appFusilAsalto.get("/id",aappEncriptar, proxybuscarFusilSerial, (req, res) => {
   con.query(
-    /*sql*/ `SELECT * FROM fusiles_asalto WHERE fusil_asalto_serial = ?`,
+    /*sql*/ `SELECT * FROM fusiles_asalto WHERE  fusil_asalto_id = ?`,
     req.body.serial,
     (err, data) => {
       if (err) {
