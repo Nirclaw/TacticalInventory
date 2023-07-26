@@ -185,9 +185,9 @@ Siguiendo estos pasos con precisión, podrás garantizar que tus solicitudes al 
 
 ------
 
-2.**para las siguietnes tablas el metodo de enviar datos es la misma **
+2.**para las siguientes tablas el metodo de enviar datos es la misma **
 
-si deseas registrar un arma la informacion a enviar aplica para las siguientes endpint 
+si deseas registrar un arma la informacion a enviar aplica para las siguientes endpoint 
 
 ## **FUSIL DE ASALTO:**
 
