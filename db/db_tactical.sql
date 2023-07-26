@@ -1,6 +1,5 @@
 CREATE DATABASE db_tactical;
 
-DROP DATABASE db_tactical;
 USE db_tactical;
 
 CREATE TABLE
