@@ -31,18 +31,54 @@ git clone https://github.com/Nirclaw/TacticalInventory.git
 
 1. **Configurar variables de entorno:** Crea un archivo `.env` en la raíz del proyecto y configura las variables de entorno necesarias. Puedes encontrar un ejemplo de las variables requeridas en el archivo `.env.example`.
 
-2. **Iniciar el servidor:** Una vez que todas las dependencias estén instaladas, puedes iniciar el servidor con el siguiente comando:
+  las variables vienen por defecto en el proyecto como usuario root y sin contraseña
 
+  ```js
+  MY_CONFIG={"hostname":"127.10.10.10", "port":5100}
+  MY_CONNECT={"host":"localhost","user":"root","password"","database":"db_tactical", "port":3306}
+  PASSWORD="Nicolas123456789"
+  ```
+
+2. **Instalar las dependencias**: El proyecto ya cuenta con un archivo llamado `package.json`, en el cual se encuentran especificadas todas las dependencias necesarias para que el proyecto funcione de manera óptima. Por lo tanto, para instalar dichas dependencias, simplemente ejecuta el siguiente comando:
+
+  ```js
+  npm install
+  ```
+
+  ###### **nota:** el proyecto trae una carpeta con la base de datos llamada `db` y dentro de esa carpeta contiene un archivo sql donde podras ejecutar el script para poder probar el proyecto al igual trae insercion de datos para que puedas experimentar las base de datos
+
+   
+
+  Este comando leerá el archivo `package.json` y descargará e instalará automáticamente todas las dependencias listadas en el proyecto. De esta manera, tendrás todo lo necesario para que el proyecto se ejecute correctamente.
+
+3. **Iniciar el servidor:** Una vez que todas las dependencias estén instaladas, puedes iniciar el servidor con el siguiente comando:
+
+   ```
    npm run dev
+   ```
+
+   
 
 
 1. ## Uso
 
-   1. Para empezar a usar la aplicación, necesitas obtener un token de autenticación. Utiliza la extensión "Thunder Client" para realizar una solicitud POST a la siguiente URL, que permitirá crear una sesión y obtener un token:
+   1. Para comenzar a utilizar la aplicación, primero necesitas obtener un token de autenticación. Para hacerlo, sigue los siguientes pasos utilizando la extensión "Thunder Client" en tu entorno de desarrollo:
 
-      **URL:** `http://127.10.10.10:5100/generateToken/123/sunombre`
+      1. Abre la extensión **"Thunder Client"** en tu entorno de desarrollo.
 
-      Una vez que realices esta solicitud, recibirás un token en la respuesta. Este token será necesario para realizar las siguientes operaciones en la aplicación.
+      2. Crea una nueva solicitud **GET** utilizando la siguiente URL:
+
+         URL: `http://127.10.10.10:5100/generateToken/123/sunombre`
+
+         Asegúrate de reemplazar "123" con tu ID o contraseña y "sunombre" con tu nombre. Estos datos son necesarios para generar el token de autenticación.
+
+      3. Ejecuta la solicitud haciendo clic en el botón correspondiente en "Thunder Client".
+
+      4. Espera la respuesta de la solicitud. En la respuesta, recibirás un **token** de autenticación.
+
+      Una vez que hayas obtenido el token, guárdalo de manera segura, ya que será necesario para llevar a cabo las siguientes operaciones dentro de la aplicación. Puedes utilizar este token como una especie de "credencial" que te permitirá acceder a las funcionalidades y recursos protegidos de la aplicación te en cuenta que el token tiene una duracion de 15min en dado caso que el token expire repetir el mismo proceso.
+
+      Recuerda mantener el token privado y no compartirlo con nadie más, ya que otorga acceso autorizado a la aplicación en tu nombre. Si en algún momento sospechas que el token ha sido comprometido, puedes solicitar uno nuevo siguiendo el mismo proceso descrito anteriormente.
 
    2. Utilizar endpoints con el token: Ahora que tienes el token de autenticación, asegúrate de incluirlo en el encabezado (header) de tus solicitudes para verificar la autenticidad del usuario. Además, sigue el orden y tipo de dato exacto para los parámetros requeridos en cada endpoint. Respetar este orden y tipo de dato es fundamental para evitar errores de parámetros de entrada.
 
@@ -52,192 +88,324 @@ git clone https://github.com/Nirclaw/TacticalInventory.git
 
    ------
 
-   ​
+   **GET**
 
    trae todos los suministros existentes 
 
-   http://127.10.10.10:5100/suministro/  
+   http://127.10.10.10:5100/suministro/
 
    ------
+
+   **GET**
 
    trae el suministro que deseas buscar por id 
 
    http://127.10.10.10:5100/suministro/id  
-
-   ```
+   
+   ```json
    {
-   id_suministro: 60
+   "id_suministro": 1
    }
    ```
 
    ------
 
+   **POST**
+
    si deseas registrar un suministro
-
-    http://127.10.10.10:5100/suministro/create
-
+   
+   http://127.10.10.10:5100/suministro/create
+   
    debes enviar la informacion de la siguiente manera 
 
-```
+```json
 {
-​    id_pistola_semiauto: number,
-​    id_cuchillo_combate: number,
-​    id_fusil_presicion: number,
-​    id_carabina: number,
-​    id_granada: number,
-​    id_escopeta: number,
-​    id_revolver: number,
-​    id_fusil_asalto: number,
-​    nombre_completo: strig,
-​    rango: string,
-​    edad: number,
+  "id_pistola_semiauto": 1,
+  "id_cuchillo_combate": 1,
+  "id_fusil_presicion": 1,
+  "id_carabina": 1,
+  "id_granada": 1,
+  "id_escopeta": 1,
+  "id_revolver": 1,
+  "id_fusil_asalto": 1,
+  "nombre_completo": "Nicolas Mauricio",
+  "rango": "General",
+  "edad": 23
 }
 ```
 
 ------
+
+**DELETE**
 
 si desas eliminar un suministro 
 
 http://127.10.10.10:5100/suministro/delete
 
-```
+```json
 {    
-id_suministro: null
+"id_suministro": 1
 }
 ```
 
 ------
+
+**PUT**
 
 actualizar suministro 
 
 http://127.10.10.10:5100/suministro/update
 
-```
-{	
-	id_suministro:number,
-​    id_pistola_semiauto: number,
-​    id_cuchillo_combate: number,
-​    id_fusil_presicion: number,
-​    id_carabina: number,
-​    id_granada: number,
-​    id_escopeta: number,
-​    id_revolver: number,
-​    id_fusil_asalto: number,
-​    nombre_completo: strig,
-​    rango: string,
-​    edad: number,
+```json
+{
+  "id_suministro":2,
+  "id_pistola_semiauto": 1,
+  "id_cuchillo_combate": 1,
+  "id_fusil_presicion": 1,
+  "id_carabina": 1,
+  "id_granada": 1,
+  "id_escopeta": 1,
+  "id_revolver": 1,
+  "id_fusil_asalto": 1,
+  "nombre_completo": "Nicolas Mauricio ron",
+  "rango": "General",
+  "edad": 23
 }
 ```
 
 
 
+
+
+## **IMPORTANTE**
+
+Además, asegúrate de proporcionar los parámetros necesarios para cada endpoint exactamente como se especifica en la documentación del API. Verifica tanto el orden como el tipo de dato de cada parámetro. Cualquier desviación de los requerimientos dará lugar a un error 400.
+
+Siguiendo estos pasos con precisión, podrás garantizar que tus solicitudes al servidor sean procesadas correctamente y que puedas acceder a los recursos y funcionalidades de la aplicación de manera exitosa y segura.
+
 ------
 
-para las siguietnes tablas el metodo de enviar datos es la misma 
+2.**para las siguietnes tablas el metodo de enviar datos es la misma **
 
 si deseas registrar un arma la informacion a enviar aplica para las siguientes endpint 
 
-http://127.10.10.10:5100/suministro/create
+## **FUSIL DE ASALTO:**
 
-http://127.10.10.10:5100/fusil-asalto/create
+**GET**
 
-http://127.10.10.10:5100/escopetas/create
+http://127.10.10.10:5100/fusil-asalto/
 
-http://127.10.10.10:5100/pistolas-semi-automaitcas/create
-
-http://127.10.10.10:5100/fusil-presicion/create
-
-http://127.10.10.10:5100/revolveres/create
-
-enviar la informacion de la siguiente manera 
-
-```
-{
-
-​    capacidad_cargador: number,
-
-​    calibre: number,
-
-​    nombre: string,
-
-​    pais_origen: strig,
-
-​    serial: number,
-
-​    clase_arma: number,
-
-  }
-```
-
-------
-
-si deseas bucar por serial en una categoria de arma este metodo de solicitar la informacion funciona para los siguientes endpoints 
-
-http://127.10.10.10:5100/suministro/id
+**GET POR ID**
 
 http://127.10.10.10:5100/fusil-asalto/id
 
+```json
+{
+  "serial": 1
+}
+```
+
+**POST**
+
+http://127.10.10.10:5100/fusil-asalto/create
+
+```json
+{
+  "capacidad_cargador": 30,
+  "calibre": 23,
+  "nombre": 6,
+  "pais_origen": "Colombia",
+  "serial": 123568,
+  "clase_arma": 5
+}
+```
+
+## **ESCOPETAS**
+
+**GET**
+
+http://127.10.10.10:5100/escopetas/
+
+**GET POR ID**
+
 http://127.10.10.10:5100/escopetas/id
+
+```json
+{
+  "serial": 1
+}
+```
+
+**POST**
+
+http://127.10.10.10:5100/escopetas/create
+
+```json
+{
+  "capacidad_cargador": 30,
+  "calibre": 23,
+  "nombre": 6,
+  "pais_origen": "Colombia",
+  "serial": 123568,
+  "clase_arma": 5
+}
+```
+
+## **PISTOLAS SEMI AUTOMATICAS**
+
+**GET**
+
+http://127.10.10.10:5100/pistolas-semi-automaitcas/
+
+**GET POR ID**
 
 http://127.10.10.10:5100/pistolas-semi-automaitcas/id
 
+```json
+{
+  "serial": 1
+}
+```
+
+**POST**
+
+http://127.10.10.10:5100/pistolas-semi-automaitcas/create
+
+```json
+{
+  "capacidad_cargador": 30,
+  "calibre": 23,
+  "nombre": 6,
+  "pais_origen": "Colombia",
+  "serial": 123568,
+  "clase_arma": 5
+}
+```
+
+## **FUSIL DE PRESICION**
+
+**GET**
+
+http://127.10.10.10:5100/fusil-presicion/
+
+**GET POR ID**
+
 http://127.10.10.10:5100/fusil-presicion/id
+
+```json
+{
+  "serial": 1
+}
+```
+
+**POST**
+
+http://127.10.10.10:5100/fusil-presicion/create
+
+```json
+{
+  "capacidad_cargador": 30,
+  "calibre": 23,
+  "nombre": 6,
+  "pais_origen": "Colombia",
+  "serial": 123568,
+  "clase_arma": 5
+}
+```
+
+## **REVOLVERES**
+
+**GET**
+
+http://127.10.10.10:5100/revolveres/
+
+**GET POR ID**
 
 http://127.10.10.10:5100/revolveres/id
 
+```json
+{
+  "serial": 1
+}
+```
+
+**POST**
+
+http://127.10.10.10:5100/revolveres/create
+
+```json
+{
+  "capacidad_cargador": 30,
+  "calibre": 23,
+  "nombre": 6,
+  "pais_origen": "Colombia",
+  "serial": 123568,
+  "clase_arma": 5
+}
+```
+
+## **GRANADAS**
+
+**GET**
+
+http://127.10.10.10:5100/granadas
+
+**GET POR ID**
+
 http://127.10.10.10:5100/granadas/id
 
-http://127.10.10.10:5100/cuchillo-combate/id
-
-```
+```json
 {
-    serial: null,
- }
+  "serial": 1
+}
 ```
 
-si deaseas conocer las armas existentes de cada clase quita el create y te enviara la informacion de todas las armas
-
-------
-
-
-
-si desaes registrar granadas utiliza este endpoint
+**POST**
 
 http://127.10.10.10:5100/granadas/create
 
-```
- {
-    peso: number,
-    descruvtivo: string,
-    pais_origen: string,
-    nombre: string,
-    clase_id: number,
-    serial: number,
-  }
+```json
+{
+  "peso": 100,
+  "descruvtivo": "explosiva",
+  "pais_origen": "colombiana",
+  "nombre": "la Explosiva",
+  "clase_id": 3,
+  "serial": 1234
+}
 ```
 
-------
 
-si deseas registrar cuchillos utiliza este endpoint
+
+**CUCHILLOS DE COMBATE**
+
+**GET**
+
+http://127.10.10.10:5100/cuchillo-combate/
+
+**GET POR ID**
+
+http://127.10.10.10:5100/cuchillo-combate/id
+
+```json
+{
+  "serial": 1
+}
+```
+
+**POST**
 
 http://127.10.10.10:5100/cuchillo-combate/create
 
-```
+```json
 {
-
-    peso: number,
-
-    longitud:number,
-
-    pais_origen:string,
-
-    nombre:string,
-
-    id_clase:number,
-
-    serial:number
-
-  }
+  "peso": 100,
+  "longitud": 500,
+  "pais_origen": "Colombia",
+  "nombre": "La filosa",
+  "id_clase": 8,
+  "serial": 1234
+}
 ```
 
 ------
